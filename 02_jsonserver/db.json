@@ -1,18 +1,28 @@
 {
   "posts": [
     {
-      "id": 2,
-      "titel": "json서버에서 추가",
-      "author": "json"
-    },
-    {
-      "id": 3,
+      "id": "2",
       "titel": "json서버에서 추가",
       "author": "json"
     },
     {
       "id": 9,
       "title": "fetch 연습",
+      "author": "admin"
+    },
+    {
+      "id": 9,
+      "title": "fetch 연습",
+      "author": "admin"
+    },
+    {
+      "id": 9,
+      "title": "fetch 연습",
+      "author": "admin"
+    },
+    {
+      "id": 5,
+      "title": "5fetch 연습",
       "author": "admin"
     }
   ]
