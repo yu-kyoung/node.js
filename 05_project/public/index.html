@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <form action="">
+      <input type="file" name="base64" />
+      <button type="button">Upload</button>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+      let fn = ""; // 파일명
+      let data = ""; // Base64 인코딩된 문자열
+
+      document
+        .querySelector('input[name="base64"]')
+        .addEventListener("change", (e) => {
+          const file = e.target.files[0];
+          if (!file) return;
+          fn = file.name;
+
+          const fr = new FileReader();
+          fr.onload = (evt) => {
+            data = evt.target.result; // data:image/jpeg;base64,...
+            console.log("Base64 data:", data.substring(0, 100) + "...");
+          };
+          fr.readAsDataURL(file);
+        });
+
+      document
+        .querySelector('button[type="button"]')
+        .addEventListener("click", async () => {
+          if (!data) {
+            alert("파일을 먼저 선택해주세요.");
+            return;
+          }
+
+          try {
+            const result = await axios.post("/upload/" + fn + "/8", {
+              data: data,
+            });
+            console.log("서버 응답:", result.data);
+          } catch (err) {
+            console.error("업로드 실패:", err);
+            alert("업로드에 실패했습니다.");
+          }
+        });
+    </script>
+  </body>
+</html>
